@@ -1,0 +1,540 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>reveal.js - The HTML Presentation Framework</title>
+
+		<meta name="description" content="A framework for easily creating beautiful presentations using HTML">
+		<meta name="author" content="Hakim El Hattab">
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<link rel="stylesheet" href="css/reveal.min.css">
+		<link rel="stylesheet" href="css/theme/default.css" id="theme">
+    <link rel="stylesheet" href="overrides.css">
+
+		<!-- For syntax highlighting -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- If the query includes 'print-pdf', use the PDF print sheet -->
+		<script>
+			document.write( '<link rel="stylesheet" href="css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+				<section>
+					<h1>FamilySearch Javascript SDK</h1>
+
+          <p>Dallan Quass</p>
+          <p>Dovy Paukstys</p>
+          <aside class="notes">Introduce Dovy, explain 2 parts</aside>
+        </section>
+
+				<section>
+					<h1>Why?</h1>
+        </section>
+
+        <section>
+          <h1>Why <span class="em">FamilySearch?</span></h1>
+          <img class="fragment" src="img/slc-temple.jpg" alt="brittreints@flickr"/>
+          <aside class="notes">Respect beliefs</aside>
+        </section>
+
+        <section>
+          <h1>Why <span class="em">Javascript?</span></h1>
+          <img class="fragment" src="img/old-woman-young-woman.jpg" alt="brittreints@flickr"/>
+          <aside class="notes">Has anyone not seen this picture before?</aside>
+        </section>
+
+        <section>
+          <section>
+            <h1>Why <span class="em">SDK?</span></h1>
+            <div class="fragment cols two-col">
+              <div class="col">
+                <img src="img/hammer.jpg" alt="thefixer@flickr"/>
+              </div>
+              <div class="col">
+                <img src="img/nail-gun.jpg" alt="petesimon@flickr"/>
+              </div>
+            </div>
+            <aside class="notes">Just like a nail gun, the SDK isn't going to
+              let you do things you can't already do with the FS REST API,
+              It just makes things go quicker.</aside>
+          </section>
+
+          <section>
+            <img src="img/rootsnap1.png" alt=""/>
+            <aside class="notes">Introduce second talk</aside>
+          </section>
+
+          <section>
+            <img src="img/rootsnap2.png" alt=""/>
+          </section>
+
+          <section>
+            <img src="img/rootsnap3.png" alt=""/>
+          </section>
+
+          <section>
+            <h1>&lt; 150 lines of code</h1>
+          </section>
+        </section>
+
+        <section>
+          <h1>Philosophy</h1>
+          <div class="fragment cols two-col">
+            <div class="col">
+              <img src="img/plumbing.jpg" alt="jmrodri@flickr"/>
+            </div>
+            <div class="col">
+              <img src="img/sink.jpg" alt="qmnonic@flickr"/>
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <img src="img/object-model.png" alt=""/>
+          <aside class="notes">
+            Object model is probably obvious to FS experts, but wasn't obvious to me. <br/>
+            Understanding it has helped me immensely.
+            I've added it to the SDK docs. <br/>
+            The main contribution of the SDK is it allows you to think of the FS REST API
+            not as a set of REST calls that return JSON/XML,
+            but as a set of function calls that return objects. <br/>
+            And because this is Javascript, the prototypes for those objects
+            can be extended with whatever additional functions you want.
+          </aside>
+        </section>
+
+        <section>
+          <section>
+            <h1>Diversion</h1>
+            <br/><br/>
+            <h2 class="em">Promises</h2>
+            <h3 class="em fragment">Are Awesome!</h3>
+            <aside class="notes">
+              One of the biggest challenges for a java programmer working on the front-end
+              is nearly everything in the browser is asynchronous:
+              listening for user clicks, waiting for http responses <br/>
+              You have to learn to embrace asynchronicity.
+              Promises make that much easier. <br/>
+              There are other ways of dealing with asynchronicity,
+              but I think promises are the most elegant once you get to know them. <br/>
+              The SDK function calls return promises.
+            </aside>
+          </section>
+          <section>
+            <h2>Mr. Java calls Miss REST about the party</h2>
+
+            <p class="fragment em2"><strong>Mr. Java:</strong> <em>Miss REST, what time is the party?</em></p>
+
+            <p class="fragment em3"><strong>Miss REST:</strong> <em>I'll know in about an hour</em></p>
+
+            <p class="fragment em2"><strong>Mr. Java:</strong> <em>I'll hold</em></p>
+
+            <p class="fragment">An hour goes by</p>
+
+            <p class="fragment em3"><strong>Miss REST:</strong> <em>The party is at 7pm</em></p>
+
+            <p class="fragment em2"><strong>Mr. Java:</strong> <em>Thanks!</em></p>
+
+            <p class="fragment">Mr. Java plans for the party</p>
+          </section>
+
+          <section>
+            <h2>Mr. Javascript <span class="em">texts</span> Miss REST about the party</h2>
+
+            <p class="fragment em"><strong>Mr. Javascript:</strong> <em>Miss REST, would you text me back when you know the time of the party?</em></p>
+
+            <p class="fragment em3"><strong>Miss REST:</strong> <em>I promise I will</em></p>
+
+            <p class="fragment">Mr. Javascript works on his family history</p>
+
+            <p class="fragment">An hour goes by</p>
+
+            <p class="fragment em3"><strong>Miss REST:</strong> <em>The party is at 7pm</em></p>
+
+            <p class="fragment">When Mr. Javascript is at a stopping spot in his family history, he plans for the party</p>
+          </section>
+
+          <section>
+            <h2>Think of a Promise as a Single-Use Event Bus</h2>
+            <pre><code data-trim>
+var promise = REST.asyncFunction();
+
+promise.then(function(response) {
+   // do something with the response
+});
+            </code></pre>
+
+            <pre class="fragment"><code data-trim>
+function asyncFunction() {
+   var deferred = $.Deferred();
+
+   setTimeout(function() {
+      deferred.resolve("Response");
+   }, 60*1000);
+
+   return deferred.promise();
+}
+            </code></pre>
+          </section>
+
+          <section>
+            <h2>Handling Rejection</h2>
+            <pre><code data-trim>
+var promise = REST.asyncFunction();
+
+promise.then(function(response) {
+   // do something with the response
+}, function(errorResponse) {
+   // handle the error
+});
+            </code></pre>
+
+            <pre class="fragment"><code data-trim>
+function asyncFunction() {
+   var deferred = $.Deferred();
+
+   setTimeout(function() {
+      deferred.reject("Error");
+   }, 60*1000);
+
+   return deferred.promise();
+}
+            </code></pre>
+          </section>
+
+          <section>
+            <h2>Promises can be nested</h2>
+
+            <p class="fragment em"><strong>Mr. Javascript:</strong> <em>Miss REST, would you text me back when you know the time of the party?</em></p>
+
+            <p class="fragment em3"><strong>Miss REST:</strong> <em>I promise I will</em></p>
+
+            <p class="fragment">Mr. Javascript works on his family history</p>
+
+            <p class="fragment">Miss REST asks her friend Miss Party Planner to fulfill her promise to Mr. Javascript</p>
+            <p class="fragment em3"><strong>Miss REST:</strong> <em>Miss Party Planner, would you text Mr. Javascript when you know the time of the party?</em></p>
+
+            <p class="fragment em4"><strong>Miss Party Planner:</strong> <em>I promise I will</em></p>
+
+            <p class="fragment">An hour goes by</p>
+
+            <p class="fragment em4"><strong>Miss Party Planner:</strong> <em>Mr. Javascript, The party is at 7pm</em></p>
+
+            <p class="fragment">When Mr. Javascript is at a stopping spot in his family history, he plans for the party</p>
+          </section>
+
+          <section>
+            <h2>Example</h2>
+            <pre><code data-trim>
+var promise = REST.asyncFunction();
+
+promise.then(function(response) {
+   // do something with the response
+});
+            </code></pre>
+
+            <pre class="fragment"><code data-trim>
+function asyncFunction() {
+   return $http('first URL').then(function(firstResponse) {
+      var secondURL = fn(firstResponse);
+      return $http(secondURL);
+   });
+}
+            </code></pre>
+            <aside class="notes">
+              Talk about rejection
+            </aside>
+          </section>
+
+          <section>
+            <h2>Promises can be aggregated</h2>
+
+            <p class="fragment em"><strong>Mr. Javascript:</strong> <em>Miss REST, would you let me know when you find out what Amy and Bill are wearing to the party?</em></p>
+
+            <p class="fragment em3"><strong>Miss REST:</strong> <em>I promise I will</em></p>
+
+            <p class="fragment em3">Miss REST texts Amy and Bill asking them what they are wearing</p>
+
+            <p class="fragment">Once Miss REST hears back from both Amy and Bill, she fulfills her promise to Mr. Javascript</p>
+          </section>
+
+          <section>
+            <h2>Example</h2>
+            <pre><code data-trim>
+var promise = REST.asyncFunction();
+
+promise.then(function(amyResponse, billResponse) {
+   // do something with the responses
+});
+            </code></pre>
+
+            <pre class="fragment"><code data-trim>
+function asyncFunction() {
+   var amyPromise = amyAsyncFunction();
+   var billPromise = billAsyncFunction();
+   return $.when(amyPromise, billPromise);
+}
+            </code></pre>
+            <aside class="notes">
+              talk about rejection <br/>
+              Once you understand promises, front-end programming will be much more fun
+            </aside>
+          </section>
+        </section>
+
+        <section>
+          <h1>Enough Talk</h1>
+          <p style="font-size:96px" class="em">Let's Code!</p>
+        </section>
+
+        <section>
+          <h1>1. Initialize</h1>
+          <pre><code  style="font-size:32px; line-height:32px; width:1000px; max-height:600px" data-trim>
+FamilySearch.init({
+   app_key: 'WCQY-7J1Q-GKVV-7DNM-SQ5M-9Q5H-JX3H-CMJK',
+   environment: 'sandbox',
+   auth_callback: 'http://localhost:9000/#!/auth',
+   http_function: $http,
+   deferred_function: $q.defer,
+   timeout_function: $timeout,
+   save_access_token: true,
+   auto_expire: true,
+   auto_signin: true
+});
+          </code  style="font-size:32px; line-height:32px; width:1000px; max-height:600px" ></pre>
+          <aside class="notes">
+            pass in your app key - get it from Gordon Clark <br/>
+            auth-callback: registered with FS; same host+port; doesn't have to exist <br/>
+            works with AngularJS, jQuery, or (future) node.js <br/>
+            all SDK functions take an options parameter that is fed directly into the
+            underlying jQuery/Angular/Node http call. <br/>
+            access token saved in a cookie <br/>
+            auto-expire starts two timers <br/>
+            auto-signin pops up an authentication window if not signed in
+          </aside>
+        </section>
+
+        <section>
+          <h1>2. Authenticate</h1>
+          <pre><code data-trim>
+FamilySearch.getAccessToken().then(function() {
+   $location.path('/list');
+});
+          </code></pre>
+          <aside class="notes">
+            You don't have to do this with auto-signing, but I think it's a good user experience <br/>
+            popup - no need to redirect to an authentication page and redirect back <br/>
+            How? <br/>
+            also works with mobile - pass in user name and password <br/>
+          </aside>
+        </section>
+
+        <section>
+          <h1>3. Make API calls</h1>
+          <pre><code  style="font-size:32px; line-height:32px; width:1000px; max-height:600px"  data-trim>
+FamilySearch.getCurrentUserPersonId().then(function(id) {
+   FamilySearch.getAncestry(id, {personDetails: true}).then(function(response) {
+      var persons = response.getPersons();
+      // do something with the Person objects
+   });
+});
+          </code></pre>
+
+          <pre class="fragment"><code  style="font-size:32px; line-height:32px; width:1000px; max-height:600px"  data-trim>
+FamilySearch.Person.prototype.isMale = function() {
+   return this.display.gender === 'Male';
+};
+          </code></pre>
+
+          <aside class="notes">
+            set correct headers <br/>
+            uses discovery resource <br/>
+            429 errors handled <br/>
+            retry for transient errors on get requests <br/>
+            convenience functions to extract various parts of the response <br/>
+            json response has been decorated with objects <br/>
+            you still have raw json, but also convenience fns on object prototypes
+          </aside>
+        </section>
+
+        <section>
+          <h3>Another Example</h3>
+          <pre><code style="font-size:20px; line-height:20px; width:1000px; max-height:600px" data-trim>
+function uploadFile(file) {
+  var fd = new FormData();
+  fd.append('artifact', file);
+  // create memory
+  return FamilySearch.createMemory(fd).then(function(memoryId) {
+
+    // read memory to get memory artifact URL (memory.about)
+    return FamilySearch.getMemory(memoryId).then(function(response) {
+      var memory = response.getMemory();
+
+      // create a memory persona from the person's name and the memory artifact URL
+      var memoryPersona = new FamilySearch.MemoryPersona(person.$getDisplayName(), memory.about);
+
+      // add the memory persona to the memory
+      return memory.$addMemoryPersona(memoryPersona).then(function(memoryPersonaRef) {
+
+        // add the memory persona reference to the person
+        return person.$addMemoryPersonaRef(memoryPersonaRef).then(function() {
+          // success!
+          return memory;
+        });
+      });
+    });
+  });
+};
+          </code></pre>
+        </section>
+
+        <section>
+          <h1>Plumbing</h1>
+          <pre><code  style="font-size:32px; line-height:32px; width:1000px; max-height:600px"  data-trim>
+FamilySearch.get('/platform/memories/memories/'+urlencode(memoryId)).then(
+   function(response) {
+      // process response
+   }
+);
+          </code></pre>
+          <aside class="notes">
+            Still handle 429 + access token; no convenience functions
+          </aside>
+        </section>
+
+        <section>
+          <h1>Documentation and Examples</h1>
+          <br/>
+          <p><a href="http://rootsdev.org/familysearch-javascript-sdk">Documentation</a></p>
+        </section>
+
+        <section>
+          <h1>Roadmap</h1>
+          <div class="fragment">
+            <h2 class="em">Complete</h2>
+            <ul>
+              <li>Authentication</li>
+              <li>Read functions</li>
+            </ul>
+          </div>
+          <div class="fragment">
+            <br/>
+            <h2 class="em">In progress</h2>
+            <ul>
+              <li>Create, update, delete functions</li>
+            </ul>
+          </div>
+          <div class="fragment">
+            <br/>
+            <h2 class="em">Needs to be Done</h2>
+            <ul>
+              <li>End-to-end tests</li>
+              <li>Node.js support</li>
+            </ul>
+          </div>
+          <aside class="notes">Mention that unit tests are in; not e2e tests</aside>
+        </section>
+
+        <section>
+          <h1>Using the SDK</h1>
+          <div class="fragment">
+            <br/>
+            <p><a href="http://github.com/rootsdev/familysearch-javascript-sdk">http://github.com/rootsdev/familysearch-javascript-sdk</a></p>
+          </div>
+          <div class="fragment">
+            <br/>
+            <p><a href="http://rootsdev.org/familysearch-javascript-sdk/familysearch-javascript-sdk.js">http://rootsdev.org/familysearch-javascript-sdk/familysearch-javascript-sdk.js</a></p>
+          </div>
+        </section>
+
+        <section>
+          <h1>Contributing to the SDK</h1>
+          <h2 class="em fragment">Pull Requests Are Welcome!</h2>
+        </section>
+
+        <section>
+          <h1>Cool things about the build workflow</h1>
+          <ul>
+            <li class="fragment">Grunt</li>
+            <li class="fragment">jsHint</li>
+            <li class="fragment">Karma</li>
+            <li class="fragment">grunt-ngdocs</li>
+            <li class="fragment">Travis-CI</li>
+          </ul>
+        </section>
+
+        <section>
+          <h1>RootsDev</h1>
+          <br/>
+          <p><span class="em">RootsDev:</span> loose organization of software engineers
+            interested in creating software for family history.</p>
+          <br/>
+          <ul class="fragment">
+            <li>github organization: <a href="https://github.com/rootsdev">github.com/rootsdev</a></li>
+            <li>a low-volume google group with often-interesting discussions</li>
+          </ul>
+          <p class="fragment em"><br/>Please join us!<br/>
+            <a href="http://rootsdev.org">rootsdev.org</a></p>
+        </section>
+
+        <section>
+          <h1>Dovy</h1>
+        </section>
+
+			</div>
+
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.min.js"></script>
+
+		<script>
+
+			// Full list of configuration options available here:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+				transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+
+				// Parallax scrolling
+				// parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+				// parallaxBackgroundSize: '2100px 900px',
+
+				// Optional libraries used to extend on reveal.js
+				dependencies: [
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+					{ src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+				]
+			});
+
+		</script>
+
+	</body>
+</html>
