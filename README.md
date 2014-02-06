@@ -1,4 +1,3 @@
-rootstech-2014-fs-js-sdk-slides
-===============================
+Slides from my 2014 RootsTech talk on the [FamilySearch Javascript SDK](https://github.com/rootsdev/familysearch-javascript-sdk).
 
-Slides from my 2014 RootsTech talk on the FamilySearch Javascript SDK
+[View the github pages branch](https://dallanq.github.com/rootstecSlides from my 2014 RootsTech talk on the [FamilySearch Javascript SDK](https://github.com/rootsdev/familysearch-javascript-sdk).
