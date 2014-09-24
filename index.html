@@ -42,72 +42,70 @@
 			<div class="slides">
 				<section>
 					<h1>FamilySearch Javascript SDK</h1>
-
           <p>Dallan Quass</p>
-          <p>Dovy Paukstys</p>
-          <aside class="notes">Introduce Dovy, explain 2 parts</aside>
-        </section>
-
-				<section>
-					<h1>Why?</h1>
         </section>
 
         <section>
-          <h1>Why <span class="em">FamilySearch?</span></h1>
-          <img class="fragment" src="img/slc-temple.jpg" alt="brittreints@flickr"/>
-          <aside class="notes">Respect beliefs</aside>
+          <h1>Disclaimers</h1>
+          <ul>
+            <li><span class="em">Not official</span> - not an official FamilySearch project</li>
+            <li><span class="em">Not supported</span> - code is provided as-is</li>
+            <li><span class="em">Not maintained</span> - everything currently works...</li>
+          </ul>
         </section>
 
         <section>
-          <h1>Why <span class="em">Javascript?</span></h1>
-          <img class="fragment" src="img/old-woman-young-woman.jpg" alt="brittreints@flickr"/>
-          <aside class="notes">Has anyone not seen this picture before?</aside>
-        </section>
-
-        <section>
-          <section>
-            <h1>Why <span class="em">SDK?</span></h1>
-            <div class="fragment cols two-col">
-              <div class="col">
-                <img src="img/hammer.jpg" alt="thefixer@flickr"/>
-              </div>
-              <div class="col">
-                <img src="img/nail-gun.jpg" alt="petesimon@flickr"/>
-              </div>
-            </div>
-            <aside class="notes">Just like a nail gun, the SDK isn't going to
-              let you do things you can't already do with the FS REST API,
-              It just makes things go quicker.</aside>
-          </section>
-
-          <section>
-            <img src="img/rootsnap1.png" alt=""/>
-            <aside class="notes">Introduce second talk</aside>
-          </section>
-
-          <section>
-            <img src="img/rootsnap2.png" alt=""/>
-          </section>
-
-          <section>
-            <img src="img/rootsnap3.png" alt=""/>
-          </section>
-
-          <section>
-            <h1>&lt; 150 lines of code</h1>
-          </section>
-        </section>
-
-        <section>
-          <h1>Philosophy</h1>
+          <h1>Why an <span class="em">SDK?</span></h1>
           <div class="fragment cols two-col">
             <div class="col">
-              <img src="img/plumbing.jpg" alt="jmrodri@flickr"/>
+              <img src="img/hammer.jpg" alt="thefixer@flickr"/>
             </div>
             <div class="col">
-              <img src="img/sink.jpg" alt="qmnonic@flickr"/>
+              <img src="img/nail-gun.jpg" alt="petesimon@flickr"/>
             </div>
           </div>
+          <aside class="notes">Just like a nail gun, the SDK isn't going to
+            let you do things you can't already do with the FS REST API,
+            It just makes things go quicker.</aside>
+        </section>
+
+        <section>
+          <h1>6500 lines of code</h1>
+          <img src="img/tree.png" alt=""/>
+        </section>
+
+        <section>
+          <h1>6500 lines of code</h1>
+          <img src="img/person-top.png" alt=""/>
+        </section>
+
+        <section>
+          <h1>What does it do?</h1>
+          <p class="fragment">REST API calls return JSON</p>
+          <p class="em fragment">==&gt;</p>
+          <p class="fragment">Javascript function calls return Javascript objects</p>
+        </section>
+
+        <section>
+          <h1>Features</h1>
+          <p class="fragment">REST API calls can be made using <span class="em">single-line</span> Javascript functions</p>
+          <p class="fragment"><span class="em">Authentication</span> is a single-line call</p>
+          <p class="fragment">Access token can be saved in a <span class="em">cookie</span> - notify on <span class="em">expiration</span></p>
+          <p class="fragment">Sets headers, handles <span class="em">transient errors and throttling</span></p>
+          <p class="fragment"><span class="em">Convenience functions</span> to make it easy to process the response</p>
+          <p class="fragment">Convenience functions return <span class="em">Javascript objects</span></p>
+          <p class="fragment">Objects have single-line <span class="em">$save()</span> and <span class="em">$delete()</span> functions</p>
+          <p class="fragment">You can <span class="em">extend object prototypes</span> to include your own functions</p>
+        </section>
+
+        <section>
+          <h1>Dependencies</h1>
+          <p class="fragment">Either jQuery or AngularJS</p>
+          <p class="fragment">No other dependencies</p>
+        </section>
+
+        <section>
+          <img src="img/docs.png" alt=""/>
         </section>
 
         <section>
@@ -337,9 +335,9 @@ FamilySearch.init({
 
         <section>
           <h1>2. Authenticate</h1>
-          <pre><code data-trim>
+          <pre><code style="font-size:32px; line-height:32px; width:1000px; max-height:600px"  data-trim>
 FamilySearch.getAccessToken().then(function() {
-   $location.path('/list');
+   // user is authenticated - OAuth dance is complete
 });
           </code></pre>
           <aside class="notes">
@@ -353,12 +351,14 @@ FamilySearch.getAccessToken().then(function() {
         <section>
           <h1>3. Make API calls</h1>
           <pre><code  style="font-size:32px; line-height:32px; width:1000px; max-height:600px"  data-trim>
-FamilySearch.getCurrentUserPersonId().then(function(id) {
-   FamilySearch.getAncestry(id, {personDetails: true}).then(function(response) {
-      var persons = response.getPersons();
-      // do something with the Person objects
+FamilySearch.getCurrentUserPersonId()
+   .then(function(id) {
+      FamilySearch.getAncestry(id)
+         .then(function(response) {
+            var persons = response.getPersons();
+            // do something with the Person objects
+         });
    });
-});
           </code></pre>
 
           <pre class="fragment"><code  style="font-size:32px; line-height:32px; width:1000px; max-height:600px"  data-trim>
@@ -381,7 +381,7 @@ FamilySearch.Person.prototype.isMale = function() {
         <section>
           <h3>Another Example</h3>
           <pre><code style="font-size:20px; line-height:20px; width:1000px; max-height:600px" data-trim>
-function uploadFile(file) {
+function createMemoryForPerson(file, person) {
   var fd = new FormData();
   fd.append('artifact', file);
   // create memory
@@ -392,7 +392,8 @@ function uploadFile(file) {
       var memory = response.getMemory();
 
       // create a memory persona from the person's name and the memory artifact URL
-      var memoryPersona = new FamilySearch.MemoryPersona(person.$getDisplayName(), memory.about);
+      var memoryPersona =
+            new FamilySearch.MemoryPersona(person.$getDisplayName(), memory.about);
 
       // add the memory persona to the memory
       return memory.$addMemoryPersona(memoryPersona).then(function(memoryPersonaRef) {
@@ -410,13 +411,25 @@ function uploadFile(file) {
         </section>
 
         <section>
+          <h1>Plumbing & Porcelain</h1>
+          <div class="fragment cols two-col">
+            <div class="col">
+              <img src="img/plumbing.jpg" alt="jmrodri@flickr"/>
+            </div>
+            <div class="col">
+              <img src="img/sink.jpg" alt="qmnonic@flickr"/>
+            </div>
+          </div>
+        </section>
+
+        <section>
           <h1>Plumbing</h1>
           <pre><code  style="font-size:32px; line-height:32px; width:1000px; max-height:600px"  data-trim>
-FamilySearch.get('/platform/memories/memories/'+urlencode(memoryId)).then(
-   function(response) {
+FamilySearch.get('/platform/memories/memories/'+
+                  urlencode(memoryId))
+   .then(function(response) {
       // process response
-   }
-);
+   });
           </code></pre>
           <aside class="notes">
             Still handle 429 + access token; no convenience functions
@@ -424,63 +437,34 @@ FamilySearch.get('/platform/memories/memories/'+urlencode(memoryId)).then(
         </section>
 
         <section>
-          <h1>Documentation and Examples</h1>
-          <br/>
-          <p><a href="http://rootsdev.org/familysearch-javascript-sdk">Documentation</a></p>
-        </section>
-
-        <section>
-          <h1>Roadmap</h1>
-          <div class="fragment">
-            <h2 class="em">Complete</h2>
-            <ul>
-              <li>Authentication</li>
-              <li>Read functions</li>
-            </ul>
-          </div>
-          <div class="fragment">
-            <br/>
-            <h2 class="em">In progress</h2>
-            <ul>
-              <li>Create, update, delete functions</li>
-            </ul>
-          </div>
-          <div class="fragment">
-            <br/>
-            <h2 class="em">Needs to be Done</h2>
-            <ul>
-              <li>End-to-end tests</li>
-              <li>Node.js support</li>
-            </ul>
-          </div>
-          <aside class="notes">Mention that unit tests are in; not e2e tests</aside>
-        </section>
-
-        <section>
           <h1>Using the SDK</h1>
           <div class="fragment">
-            <br/>
+            <p>Github repository</p>
             <p><a href="http://github.com/rootsdev/familysearch-javascript-sdk">http://github.com/rootsdev/familysearch-javascript-sdk</a></p>
           </div>
           <div class="fragment">
-            <br/>
+            <p>Documentation</p>
+            <p><a href="http://rootsdev.org/familysearch-javascript-sdk">http://rootsdev.org/familysearch-javascript-sdk</a></p>
+          </div>
+          <div class="fragment">
+            <p>Downloadable code</p>
             <p><a href="http://rootsdev.org/familysearch-javascript-sdk/familysearch-javascript-sdk.js">http://rootsdev.org/familysearch-javascript-sdk/familysearch-javascript-sdk.js</a></p>
           </div>
         </section>
 
         <section>
-          <h1>Contributing to the SDK</h1>
-          <h2 class="em fragment">Pull Requests Are Welcome!</h2>
+          <h1>Contributing</h1>
+          <h2 class="em">Pull Requests Are Welcome!</h2>
         </section>
 
         <section>
           <h1>Cool things about the build workflow</h1>
           <ul>
-            <li class="fragment">Grunt</li>
             <li class="fragment">jsHint</li>
             <li class="fragment">Karma</li>
-            <li class="fragment">grunt-ngdocs</li>
             <li class="fragment">Travis-CI</li>
+            <li class="fragment">Grunt</li>
+            <li class="fragment">grunt-ngdocs</li>
           </ul>
         </section>
 
@@ -499,7 +483,8 @@ FamilySearch.get('/platform/memories/memories/'+urlencode(memoryId)).then(
         </section>
 
         <section>
-          <h1>Dovy</h1>
+          <h1>The End</h1>
+          <p>Slides are at <a href="https://github.com/DallanQ/rootstech-2014-fs-js-sdk-slides">https://github.com/DallanQ/rootstech-2014-fs-js-sdk-slides</a></p>
         </section>
 
 			</div>
